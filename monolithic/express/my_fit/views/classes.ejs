@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/_head') -%>
+  <!-- body -->
+  <body class="main-layout">
+    <!-- loader  -->
+    <%- include('partials/_loader') -%>
+    <!-- end loader -->
+    <!-- header -->
+    <%- include('partials/_navigation') -%> <%if(!user?.isSuspended){ %>
+    <div class="back_re">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+              <h2>Open Classes</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- services -->
+    <div class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <p>The best workouts from the best instructors!</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% classes.forEach(e=>{ %>
+          <div class="col-md-4">
+            <div
+              class="se_img"
+              style="
+                background-color: rgb(194, 202, 209);
+                border-radius: 10px;
+                padding: 2em;
+              "
+            >
+              <figure style="background-color: aliceblue; border-radius: 10px">
+                <img
+                  src="/images/service1.jpg"
+                  alt="#"
+                  style="
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                  "
+                />
+                <p class="mb-4 mt-2"><%= e.name%></p>
+                <% if(user){ %> <% if(
+                !user.enrolled_classes.includes(e._id.toString()) &&
+                user.role=="user"){ %>
+
+                <a
+                  class="btn btn-info text-white"
+                  href="/users/enroll?id=<%=e._id%>"
+                  >Enroll</a
+                >
+                <%}%> <%}%>
+              </figure>
+            </div>
+          </div>
+          <%}) %>
+        </div>
+      </div>
+    </div>
+    <%} if(user.isSuspended){ %>
+    <div class="w-100 d-flex justify-content-center align-items-center">
+      <div
+        class="bg-danger border-3 rounded-2 p-5 w-50 mt-5 text-white h5"
+        style="border-radius: 10px; line-height: 60px"
+      >
+        <p class="h4">Suspended!</p>
+        <p class="mt-3">
+          Your account has been suspended. Contact with us if you think this is
+          a mistake.
+        </p>
+      </div>
+    </div>
+    <%}%> <%- include('partials/_footer') -%>
+  </body>
+</html>

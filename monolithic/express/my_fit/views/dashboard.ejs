@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/_head') -%>
+  <!-- body -->
+  <body class="main-layout">
+    <!-- loader  -->
+    <%- include('partials/_loader') -%>
+
+    <!-- header -->
+    <%- include('partials/_navigation') -%> <%if(!user.isSuspended){%>
+    <!-- Instructor -->
+    <%if(user && user.role=="instructor"){%>
+
+    <div class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-2">
+            <div class="titlepage">
+              <p>Create a new course</p>
+            </div>
+            <form class="main_form" method="post" action="/classes/new">
+              <div class="row">
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Name"
+                    type="text"
+                    name="name"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Duration"
+                    type="text"
+                    name="duration"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    type="hidden"
+                    name="instructor"
+                    value="<%= user._id%>"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Date"
+                    type="date"
+                    name="date"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Date"
+                    type="time"
+                    name="time"
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <button class="send_btn">Create</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <p>Courses belongs to: <%= user.email%></p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% classes.forEach(e=>{ %>
+          <div class="col-md-4">
+            <div id="trai" class="trainer_box bg-white">
+              <div class="trainer_img">
+                <figure><img src="/images/tra.jpg" alt="#" /></figure>
+              </div>
+              <div class="trainer d-flex justify-content-center flex-column">
+                <h4 class="text-center"><%= e.name%></h4>
+                <p class="text-center">
+                  Date: <%= e.time.toLocaleDateString()%> Time: <%=
+                  e.time.toLocaleTimeString()%>
+                </p>
+                <a class="btn btn-danger" href="/classes/delete?id=<%=e._id%>"
+                  >Delete</a
+                >
+              </div>
+            </div>
+          </div>
+          <%}) %>
+        </div>
+      </div>
+    </div>
+
+    <%}%>
+
+    <!-- Normal User -->
+    <%if(user && user.role=="user"){%>
+
+    <div class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <p>Courses belongs to: <%= user.email%></p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% user.enrolled_classes.forEach(e=>{ %>
+          <div class="col-md-4">
+            <div id="trai" class="trainer_box bg-white">
+              <div class="trainer_img">
+                <figure><img src="/images/tra.jpg" alt="#" /></figure>
+              </div>
+              <div class="trainer d-flex justify-content-center flex-column">
+                <h4 class="text-center"><%= e.name%></h4>
+                <p class="text-center">
+                  Date: <%= e.time.toLocaleDateString()%> Time: <%=
+                  e.time.toLocaleTimeString()%>
+                </p>
+              </div>
+            </div>
+          </div>
+          <%}) %>
+        </div>
+      </div>
+    </div>
+
+    <%}%> <%} if(user.isSuspended){ %>
+    <div class="w-100 d-flex justify-content-center align-items-center">
+      <div
+        class="bg-danger border-3 rounded-2 p-5 w-50 mt-5 text-white h5"
+        style="border-radius: 10px; line-height: 60px"
+      >
+        <p class="h4">Suspended!</p>
+        <p class="mt-3">
+          Your account has been suspended. Contact with us if you think this is
+          a mistake.
+        </p>
+      </div>
+    </div>
+    <%}%> <%if(user.role=="admin"){%>
+    <!-- services -->
+    <div class="services">
+      <div class="container">
+        <div class="d-flex justify-content-center mt-2">
+          <div class="w-50 h3 text-white text-center pb-5">Admin Panel</div>
+        </div>
+        <%- include('partials/_adminNavigation') -%>
+      </div>
+    </div>
+
+    <%}%>
+    <!--  footer -->
+    <%- include('partials/_footer') -%>
+  </body>
+</html>

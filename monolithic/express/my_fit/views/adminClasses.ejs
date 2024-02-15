@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/_head') -%>
+  <!-- body -->
+
+  <body class="main-layout">
+    <!-- loader  -->
+    <%- include('partials/_loader') -%>
+
+    <!-- header -->
+    <%- include('partials/_navigation') -%>
+    <!-- Instructor -->
+    <%if(user){%> <%if(user.role=="admin"){%>
+    <!-- services -->
+    <div class="services">
+      <div class="container">
+        <%- include('partials/_adminNavigation') -%>
+        <div class="row">
+          <div class="col-md-8 offset-2">
+            <div class="titlepage">
+              <p>Delete a course</p>
+            </div>
+            <form class="main_form" method="post" action="/classes/new">
+              <div class="row">
+                <% classes.forEach(e=>{ %>
+                <div class="col-md-4">
+                  <div id="trai" class="trainer_box bg-white">
+                    <div class="trainer_img">
+                      <figure><img src="/images/tra.jpg" alt="#" /></figure>
+                    </div>
+                    <div
+                      class="trainer d-flex justify-content-center flex-column"
+                    >
+                      <h4 class="text-center"><%= e.name%></h4>
+                      <p class="text-center">
+                        Date: <%= e.time.toLocaleDateString()%> Time: <%=
+                        e.time.toLocaleTimeString()%>
+                      </p>
+                      <a
+                        class="btn btn-danger"
+                        href="/classes/delete?id=<%=e._id%>"
+                        >Delete</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <%}) %>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%}%> <%}%>
+    <!--  footer -->
+    <%- include('partials/_footer') -%>
+  </body>
+</html>

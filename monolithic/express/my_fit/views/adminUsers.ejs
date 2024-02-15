@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/_head') -%>
+    <!-- body -->
+
+    <body class="main-layout">
+        <!-- loader  -->
+        <%- include('partials/_loader') -%>
+
+            <!-- header -->
+            <%- include('partials/_navigation') -%>
+                <!-- Instructor -->
+                <%if(user){%>
+                    <%if(user.role=="admin"){%>
+                        <!-- services -->
+                        <div class="services">
+                            <div class="container">
+                                <%- include('partials/_adminNavigation') -%>
+                                    <div class="row">
+                                        <div class="col-md-8 offset-2">
+                                            <div class="titlepage">
+                                                <p>Users</p>
+                                            </div>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Enrolled Classes</th>
+                                                        <th scope="col">Handle</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% users.forEach((e,i)=>{ %>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <%=(i+((Number(currentPage)-1)*itemsPerPage))%></th>
+                                                            <td>
+                                                                <%= e.email%>
+                                                            </td>
+                                                            <td>
+                                                                <!-- prettier-ignore  -->
+                                                                <%= e.enrolled_classes.length> 0 ? e.enrolled_classes.map(c=> c.name).join(', ') : "no classes are enrolled" %>
+                                                            </td>
+                                                            <td>
+                                                                <form action="/admin/suspend" method="post">
+                                                                    <input type="hidden" value="<%=e._id%>"
+                                                                        name='userid'></input>
+                                                                    <button href="" class="btn btn-danger">
+                                                                        <%= e.isSuspended ? "Cancel Suspend" : "Suspend"
+                                                                            %>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <%})%>
+                                                </tbody>
+                                            </table>
+                                            <div class="d-flex flex-row justify-content-center gap-3" id="pagination">
+                                                <%if(pagesCount<=7){%>
+                                                <% for(let i=0; pagesCount-1>i;i++) {%>
+                                                    <a style="width: 40px; height: 40px; color:blue;"
+                                                        class="<%= (currentPage==i+1)?('bg-white'): 'bg-secondary' %>"
+                                                        href="/admin/users?page=<%=i+1%>">
+                                                        <%=i+1%>
+                                                    </a>
+                                                    <%}%>
+                                                    <%}%>
+                                                    <%if(pagesCount>7){%>
+                                                        <% for(let i=0; 3>i;i++) {%>
+                                                          <%  if((Number(currentPage)+i-3)>=1){%>
+                                                            <a style="width: 40px; height: 40px; color:blue;"
+                                                                class="bg-secondary%>"
+                                                                href="/admin/users?page=<%=Number(currentPage)+i-3%>">
+                                                                <%=Number(currentPage)+i-3%>
+                                                            </a>
+                                                            <%}%>
+                                                            <%}%>
+                                                            <a style="width: 40px; height: 40px; color:blue;"
+                                                            class="bg-white"
+                                                            href="/admin/users?page=<%=Number(currentPage)%>">
+                                                            <%=Number(currentPage)%>
+                                                        </a>
+                                                            <% for(let i=0; 3>i;i++) {%>
+                                                                <% if((Number(currentPage)+i+1)<=pagesCount){ %>
+                                                                <a style="width: 40px; height: 40px; color:blue;"
+                                                                    class="bg-secondary%>"
+                                                                    href="/admin/users?page=<%=Number(currentPage)+i+1%>">
+                                                                    <%=Number(currentPage)+i+1%>
+                                                                </a>
+                                                                <%}%>
+                                                                <%}%>
+
+                                                    <%}%>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+
+                                <form method="get" action="/admin/users?page=<%=currentPage%>"  class="d-flex w-50 justify-content-center">
+                                    <label class="text-white h6 ">Search for a user: </label>
+                                    <input name="email" type="text" placeholder="email" class="input-group ml-2">
+                                    <input name="page" type="hidden" value="<%=currentPage%>">
+                                    <button class="btn btn-info d-flex align-items-center ml-2">Search</button>
+                                </form>
+
+
+                            </div>
+                            <%if(searchQueryUser){%>
+                                <div class="d-flex justify-content-center">
+                            <table class="table table-striped mt-5 w-50">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Enrolled Classes</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                        <tr>
+                                            <th scope="row">
+                                                1</th>
+                                            <td>
+                                                <%= searchQueryUser?.email%>
+                                            </td>
+                                            <td>
+                                                <!-- prettier-ignore  -->
+                                                <%= searchQueryUser.enrolled_classes?.length> 0 ? searchQueryUser?.enrolled_classes.map(c=> c.name).join(', ') : "no classes are enrolled" %>
+                                            </td>
+                                            <td>
+                                                <form action="/admin/suspend" method="post">
+                                                    <input type="hidden" value="<%=searchQueryUser?._id%>"
+                                                        name='userid'></input>
+                                                    <button href="" class="btn btn-danger">
+                                                        <%= searchQueryUser.isSuspended ? "Cancel Suspend" : "Suspend"
+                                                            %>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                            <%}%>
+                        </div>
+
+                        <%}%>
+                            <%}%>
+                                <!--  footer -->
+                                <%- include('partials/_footer') -%>
+                                    <style>
+                                        #pagination a {
+                                            margin-left: 5px;
+                                            text-align: center;
+                                            color: wheat;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            border-radius: 5px;
+                                        }
+                                    </style>
+    </body>
+
+</html>

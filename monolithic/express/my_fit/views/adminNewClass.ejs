@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/_head') -%>
+  <!-- body -->
+
+  <body class="main-layout">
+    <!-- loader  -->
+    <%- include('partials/_loader') -%>
+
+    <!-- header -->
+    <%- include('partials/_navigation') -%>
+    <!-- Instructor -->
+    <%if(user){%> <%if(user.role=="admin"){%>
+    <!-- services -->
+    <div class="services">
+      <div class="container">
+        <%- include('partials/_adminNavigation') -%>
+        <div class="row">
+          <div class="col-md-8 offset-2">
+            <div class="titlepage">
+              <p>Create a new course</p>
+            </div>
+            <form class="main_form" method="post" action="/classes/new">
+              <div class="row">
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Name"
+                    type="text"
+                    name="name"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Duration"
+                    type="text"
+                    name="duration"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    type="text"
+                    name="instructor"
+                    value=""
+                    placeholder="id of the instructor"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Date"
+                    type="date"
+                    name="date"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    class="contactus"
+                    placeholder="Date"
+                    type="time"
+                    name="time"
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <button class="send_btn">Create</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%}%> <%}%>
+    <!--  footer -->
+    <%- include('partials/_footer') -%>
+  </body>
+</html>
