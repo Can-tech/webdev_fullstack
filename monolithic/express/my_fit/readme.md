@@ -132,10 +132,6 @@ if (!this.isModified("password")) return next();
 
 Note that, c.instructor is a document ObjectId referencing to a user. So We can compare it without populating but converting it into a string!
 
-## Images
-
-![Alt text](webdev_fullstack\monolithic\express\my_fit\project_images\not_loged_in_user_screen.JPG)
-
 ## To do
 
 - User login Validations
