@@ -26,7 +26,7 @@
                   href="/furnitures/<%=parentCategory%>/<%=e.name%>"
                   ><%= e.name%></a
                 >
-                <%if(!e.reservedBy){%>
+                <%if(!e.reservedBy && userIn){%>
                 <form action="/furnitures/reserve" method="post">
                   <input type="hidden" value="<%= e._id%>" name="furnitureid" />
                   <button class="chair_text btn btn-info" href="">
