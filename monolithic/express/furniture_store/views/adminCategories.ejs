@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/_head.ejs') -%>
+
+  <body>
+    <%- include('partials/_navigation.ejs') -%>
+    <!-- header section end -->
+    <!-- contact section start -->
+    <div class="contact_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="contact_taital contact_heading">
+              Create a new Category
+            </h1>
+          </div>
+        </div>
+        <div class="contact_section_2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mail_section map_form_container">
+                <form action="/categories/new" method="post">
+                  <input
+                    type="text"
+                    class="mail_text"
+                    placeholder="name"
+                    name="name"
+                  />
+                  <select
+                    type="text"
+                    class="mail_text"
+                    placeholder="category"
+                    name="parentCategory"
+                  >
+                    <option value="">None</option>
+                    <% categories.forEach(e=>{ %> <%if(!e.parentCategory){%>
+                    <option value="<%=e._id%>"><%=e.name%></option>
+                    <%}%> <%})%>
+                  </select>
+
+                  <div class="btn_main">
+                    <div class="send_bt">
+                      <button class="" type="submit">Create</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="blog_section layout_padding mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="blog_taital">Categories</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="blog_section_2 layout_padding">
+          <div class="row">
+            <% categories.forEach(e=>{ %> <%if(!e.parentCategory){%>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="blog_box bg-primary">
+                <p class="chair_text"><%=e.name%></p>
+              </div>
+            </div>
+            <%}%> <%})%> <% categories.forEach(e=>{ %> <%if(e.parentCategory){%>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="blog_box">
+                <p class="chair_text"><%=e.name%></p>
+              </div>
+            </div>
+            <%}%> <%})%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contact section end -->
+    <%- include('partials/_footer.ejs') -%>
+  </body>
+</html>

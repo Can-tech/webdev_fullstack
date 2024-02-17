@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/_head.ejs') -%>
+
+  <body>
+    <%- include('partials/_navigation.ejs') -%>
+    <!-- header section end -->
+    <!-- contact section start -->
+    <div class="contact_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="contact_taital contact_heading">
+              Create a new Furniture
+            </h1>
+          </div>
+        </div>
+        <div class="contact_section_2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mail_section map_form_container">
+                <form
+                  action="/furnitures/new"
+                  method="post"
+                  encType="multipart/form-data"
+                >
+                  <input
+                    type="text"
+                    class="mail_text"
+                    placeholder="name"
+                    name="name"
+                  />
+                  <input type="file" class="mail_text" name="image" />
+                  <textarea
+                    type="file"
+                    class="mail_text"
+                    name="description"
+                  ></textarea>
+                  <select
+                    type="text"
+                    class="mail_text"
+                    placeholder="category"
+                    name="category"
+                  >
+                    <% childCategories.forEach(e=>{ %>
+                    <option value="<%=e._id%>"><%=e.name%></option>
+                    <%})%>
+                  </select>
+
+                  <div class="btn_main">
+                    <div class="send_bt">
+                      <button class="" type="submit">Create</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="blog_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="blog_taital">All Furnitures</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container mb-5">
+        <div class="blog_section_2 layout_padding mb-5">
+          <div class="row">
+            <% furnitures.forEach(e=>{ %>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="blog_box">
+                <div class="blog_img"><img src="/uploads/<%=e.image%>" /></div>
+                <p class="chair_text"><%=e.name%></p>
+                <% if(e.reservedBy){ %>
+                <p class="chair_text">Reserved By: <%=e.reservedBy%></p>
+                <%}%>
+              </div>
+            </div>
+            <%})%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contact section end -->
+    <%- include('partials/_footer.ejs') -%>
+  </body>
+</html>

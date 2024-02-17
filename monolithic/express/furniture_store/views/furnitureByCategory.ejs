@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/_head.ejs') -%>
+
+  <body>
+    <%- include('partials/_navigation.ejs') -%>
+    <!-- header section end -->
+    <!-- furnitures section start -->
+    <div class="blog_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="blog_taital">Categories</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="blog_section_2 layout_padding">
+          <div class="row">
+            <% furnitures.forEach(e=>{%>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="blog_box text-center">
+                <div class="blog_img"><img src="/uploads/<%= e.image%>" /></div>
+                <a
+                  class="chair_text"
+                  href="/furnitures/<%=parentCategory%>/<%=e.name%>"
+                  ><%= e.name%></a
+                >
+                <%if(!e.reservedBy){%>
+                <form action="/furnitures/reserve" method="post">
+                  <input type="hidden" value="<%= e._id%>" name="furnitureid" />
+                  <button class="chair_text btn btn-info" href="">
+                    Reserve
+                  </button>
+                </form>
+                <%}%>
+              </div>
+            </div>
+            <%})%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- furnitures section end -->
+    <%- include('partials/_footer.ejs') -%>
+  </body>
+</html>
