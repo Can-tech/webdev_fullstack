@@ -1,0 +1,134 @@
+Car.create({
+    name: "Mustang",
+    model: "GT",
+    make: "Ford",
+    bodyStyle: "Coupe",
+    color: "Red",
+    horsepower: 450,
+    year: 2020,
+    condition: "New",
+    price: 35000,
+  });
+
+[
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd424a" },
+    "name": "Regal",
+    "model": "Tiguan",
+    "make": "Chevrolet",
+    "bodyStyle": "SUV",
+    "color": "Indigo",
+    "horsepower": 1.7,
+    "year": 2000,
+    "condition": "Poor",
+    "price": 99675.017
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd424b" },
+    "name": "1500",
+    "model": "Beetle",
+    "make": "Toyota",
+    "bodyStyle": "Coupe",
+    "color": "Turquoise",
+    "horsepower": 0.2,
+    "year": 2010,
+    "condition": "Good",
+    "price": 12884.087
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd424c" },
+    "name": "Ranger",
+    "model": "Jetta",
+    "make": "Volkswagen",
+    "bodyStyle": "Hatchback",
+    "color": "Puce",
+    "horsepower": 0.7,
+    "year": 2003,
+    "condition": "Excellent",
+    "price": 6820.038
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd424d" },
+    "name": "SLK-Class",
+    "model": "Tiguan",
+    "make": "Toyota",
+    "bodyStyle": "Sedan",
+    "color": "Goldenrod",
+    "horsepower": 1.6,
+    "year": 2000,
+    "condition": "Excellent",
+    "price": 68209.241
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd424e" },
+    "name": "Blazer",
+    "model": "Beetle",
+    "make": "Chevrolet",
+    "bodyStyle": "Hatchback",
+    "color": "Fuscia",
+    "horsepower": 0.8,
+    "year": 2011,
+    "condition": "Good",
+    "price": 95375.359
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd424f" },
+    "name": "62",
+    "model": "Beetle",
+    "make": "Honda",
+    "bodyStyle": "SUV",
+    "color": "Aquamarine",
+    "horsepower": 0.4,
+    "year": 2006,
+    "condition": "Excellent",
+    "price": 44997.707
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd4250" },
+    "name": "Exige",
+    "model": "Jetta",
+    "make": "Chevrolet",
+    "bodyStyle": "Coupe",
+    "color": "Indigo",
+    "horsepower": 2.5,
+    "year": 2020,
+    "condition": "Poor",
+    "price": 86196.041
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd4251" },
+    "name": "Expedition EL",
+    "model": "Jetta",
+    "make": "Toyota",
+    "bodyStyle": "Truck",
+    "color": "Blue",
+    "horsepower": 2.0,
+    "year": 2000,
+    "condition": "Good",
+    "price": 25531.967
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd4252" },
+    "name": "Blazer",
+    "model": "Tiguan",
+    "make": "Honda",
+    "bodyStyle": "SUV",
+    "color": "Teal",
+    "horsepower": 2.0,
+    "year": 2016,
+    "condition": "Fair",
+    "price": 37910.234
+  },
+  {
+    "id": { "$oid": "65eacc8efc13ae279bcd4253" },
+    "name": "5000S",
+    "model": "Beetle",
+    "make": "Ford",
+    "bodyStyle": "Sedan",
+    "color": "Purple",
+    "horsepower": 2.0,
+    "year": 2011,
+    "condition": "Poor",
+    "price": 43691.526
+  }
+]

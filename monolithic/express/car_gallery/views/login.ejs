@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <%- include('partials/_head') -%>
+
+  <body>
+    <!--featured-cars start -->
+    <%- include('partials/_navigation') -%>
+    <section id="featured-cars" class="featured-cars" style="margin-top: 20px">
+      <div class="container">
+        <div class="section-header">
+          <h2>admin login panel</h2>
+        </div>
+        <!--/.section-header-->
+        <div class="featured-cars-content-search-page">
+            <form action="/users/login" method="post" class="hm-foot-email" style="display: flex; justify-content: center; align-items: center;flex-direction: column;gap: 30px;">
+                <div class="foot-email-box" style="width: 50%;">
+                  <input
+                  style="font-size: x-large;height:70px;"
+                    name="email"
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="foot-email-box" style="width: 50%;">
+                    <input
+                    style="font-size: x-large;height:70px;"
+                    name="password"
+                      type="text"
+                      class="form-control"
+                      placeholder="Password"
+                    />
+                </div>
+                <div class="foot-email-box" style="width: 30%;">
+                    <button
+                    style="font-size: x-large;height:70px;color: aliceblue;;"
+                      type="submit"
+                      class="form-control"
+                    >Login</button>
+                </div>
+            </form>
+        </div>
+      <!--/.container-->
+    </section>
+
+    <%- include('partials/_footer') -%>
+  </body>
+</html>
